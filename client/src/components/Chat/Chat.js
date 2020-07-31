@@ -13,7 +13,7 @@ const Chat = ({location}) =>{
     const[room,setRoom] = useState('')
     const [message, setMessage] = useState('');
     const [messages, setMessages] = useState([]);
-    const  ENDPOINT = 'localhost:5000'
+    const  ENDPOINT = 'https://react-node-socket-chat-app.herokuapp.com/'
     const [socket] =useSocket(ENDPOINT)
     socket.connect()
 
@@ -54,9 +54,6 @@ const Chat = ({location}) =>{
                 <InfoBar room={room}/>
                 <Messages messages={messages} name={name} />
                 <Input message={message} setMessage={setMessage} sendMessage={sendMessage} />
-               
-                
-
             </div>
         </div>
     )

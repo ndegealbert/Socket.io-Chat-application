@@ -7,15 +7,16 @@ const  {addUser,removeUser,getUser ,getUserRomm  }  = require('./users')
 
 //Router 
 const  router =  require('./router')
-const PORT =process.env.PORT || 5000
+const PORT = process.env.PORT || 5000
+
+
 
 const  app = express()
-app.use(cors)
+app.use(cors())
 const Server = http.createServer(app)
 const io = socketio(Server)
 
 io.on('connection',(socket)=>{
-    console.log("User Connected")
     socket.on('join',({name,room})=>{
         console.log(name,room)
 
@@ -29,6 +30,7 @@ io.on('connection',(socket)=>{
 
         socket.broadcast.to(user.room).emit('message',{user:'admin',text:`${user.name}  has Joined`})
         socket.join(user.room)
+        //Emit room details to user Data
         io.to(user.room).emit('roomData',{room:user.room,users:getUserRomm(user.room)})
 
         }    
@@ -54,7 +56,5 @@ io.on('connection',(socket)=>{
     })
 
 })
-
 app.use(router )
-
 Server.listen(PORT,()=>console.log(`Server listening to Port ${PORT}`))
