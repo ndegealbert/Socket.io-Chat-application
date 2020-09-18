@@ -65,4 +65,4 @@ io.on('connection',(socket)=>{
 
 })
 app.use(router )
-Server.listen(PORT,()=>console.log(`Server listening to Port ${PORT}`))
+Server.listen(process.env.PORT || 5000, () => console.log(`Server has started at  5000.`));
