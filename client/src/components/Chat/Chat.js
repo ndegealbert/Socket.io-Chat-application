@@ -16,7 +16,7 @@ const Chat = ({location}) =>{
     const  ENDPOINT = 'https://react-node-socket-chat-app.herokuapp.com/'
 
   const  ENDPOINT2 = 'http://localhost:5000/'
-    const [socket] =useSocket(ENDPOINT2)
+    const [socket] =useSocket(ENDPOINT)
     socket.connect()
 
     useEffect(()=>{
